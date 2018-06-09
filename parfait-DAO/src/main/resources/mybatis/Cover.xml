@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.sakuraruo.parfaitDAO.mapper.CoverMapper">
+    <select id="findCoverById" resultType="com.sakuraruo.parfaitDAO.model.Cover">
+		SELECT
+	cover_id AS coverId,
+	cover_name AS coverName,
+	cover_path AS coverPath,
+	cover_type AS coverType,
+	create_date AS createDate,
+	create_user AS createuser,
+	update_date AS UPDATEDate
+FROM
+	cover
+WHERE
+	cover_id = #{cover_id}
+    </select>
+    
+</mapper>

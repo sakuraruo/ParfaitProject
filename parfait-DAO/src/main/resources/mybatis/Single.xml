@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sakuraruo.parfaitDAO.mapper.SinglesMapper">
+	<select id="findSingleById" resultType="com.sakuraruo.parfaitDAO.model.Singles">
+		SELECT singles_id as
+		singlesId,singles_name as singlesName,singles_des as
+		singlesDes,album_id as albumId,singer_id as singerId,remark_id as
+		remarkId,cover_id as coverId,lyric_id as lyricId,create_date as
+		createDate,create_user as createUser,update_date as updateDate FROM
+		singles WHERE singles_id=#{singles_id} ;
+	</select>
+	<select id="findSingleByAlbumId" resultType="com.sakuraruo.parfaitDAO.model.Singles">
+		<!-- SELECT singles_id as singlesId,singles_name as singlesName,singles_des 
+			as singlesDes,album_id as albumId,singer_id as singerId,remark_id as remarkId,cover_id 
+			as coverId,lyric_id as lyricId,create_date as createDate,create_user as createUser,update_date 
+			as updateDate,singles_path as singlesPath FROM singles WHERE album_id=#{album_id} -->
+		SELECT
+		a.singles_id AS singlesId,
+		a.singles_name AS singlesName,
+		a.singles_des AS singlesDes,
+		a.album_id AS albumId,
+		a.singer_id AS
+		singerId,
+		a.remark_id AS remarkId,
+		a.cover_id AS coverId,
+		a.lyric_id AS
+		lyricId,
+		a.create_date AS createDate,
+		a.create_user AS createUser,
+		a.update_date AS updateDate,
+		a.singles_path AS singlesPath,
+		b.album_name AS albumName,
+		c.singer_name AS singerName,
+		a.singles_duration AS singlesDuration
+		FROM
+		singles a,
+		album b,singer c
+		WHERE
+		b.album_id=a.album_id=#{album_id} AND c.singer_id=a.singer_id ;
+	</select>
+	<select id="findSingleBySingleId" resultType="com.sakuraruo.parfaitDAO.model.Singles">
+		SELECT
+		a.singles_name AS singlesName,
+		c.singer_name AS singerName,
+		b.album_name AS albumName,
+		a.singles_path AS singlesPath
+		FROM
+		singles a,
+		album b,
+		singer c
+		WHERE
+		b.album_id=a.album_id AND c.singer_id=a.singer_id
+		AND singles_id=#{singles_id}
+	</select>
+
+	<select id="searchSingle" resultType="com.sakuraruo.parfaitDAO.model.Singles">
+		SELECT
+		a.singles_id AS singlesId,
+		a.singles_name AS singlesName,
+		c.singer_name AS singerName,
+		b.album_name AS albumName,
+		a.singles_duration AS singlesDuration
+		FROM singles a, album b, singer c
+		WHERE b.album_id=a.album_id AND c.singer_id=a.singer_id AND
+		singles_name like '%${singles_name}%'
+	</select>
+</mapper>

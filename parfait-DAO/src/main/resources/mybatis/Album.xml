@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.sakuraruo.parfaitDAO.mapper.AlbumMapper">
+    <select id="findAlbumById" resultType="com.sakuraruo.parfaitDAO.model.Album">
+        SELECT album_id as albumId,album_name as albumName,album_des as albumDes,publish_time as publishTime,singer_name as singerName,publisher as publisher,cover_id as coverId,create_date as createDate,create_user as createUser,update_date as updateDate FROM album WHERE album_id=#{album_id} ;
+    </select>
+    <select id="searchAlbum" resultType="com.sakuraruo.parfaitDAO.model.Album">
+        SELECT album_id as albumId,album_name as albumName,album_des as albumDes,publish_time as publishTime,singer_name as singerName,publisher as publisher,cover_id as coverId,create_date as createDate,create_user as createUser,update_date as updateDate FROM album WHERE album_name like '%${album_name}%';
+    </select>
+</mapper>

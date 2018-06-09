@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.sakuraruo.parfaitDAO.mapper.UserMapper">
+    <select id="findUserByUserId" resultType="com.sakuraruo.parfaitDAO.model.User">
+	SELECT
+	user_id AS userId,
+	user_name AS userName,
+	user_sex AS userSex,
+	user_status AS userStatus,
+	user_email AS userEmail,
+	user_phonenum AS userPhonenum,
+  cover_id AS coverId
+FROM user
+
+WHERE user_id=#{user_id};
+    </select>
+    
+</mapper>
